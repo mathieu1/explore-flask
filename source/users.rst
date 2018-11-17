@@ -53,7 +53,7 @@ class.
 
 ::
 
-   # ourapp/util/security.py
+   # ourapp/util.py
 
    from itsdangerous import URLSafeTimedSerializer
 
@@ -267,7 +267,7 @@ before being stored.
            return self._password
 
        @password.setter
-       def _set_password(self, plaintext):
+       def password(self, plaintext):
            self._password = bcrypt.generate_password_hash(plaintext)
 
 We're using SQLAlchemy's hybrid extension to define a property with
@@ -337,7 +337,7 @@ the hashed password stored for that user.
 
        # [...] columns and properties
 
-       def is_correct_password(self, plaintext)
+       def is_correct_password(self, plaintext):
            return bcrypt.check_password_hash(self._password, plaintext)
 
 
